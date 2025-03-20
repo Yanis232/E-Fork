@@ -1,5 +1,6 @@
 import os
-
+import csv
+import pandas as pd
 
 lignes = ["Ligne 1\n", "Ligne 2\n", "Ligne 3\n"]
 
@@ -31,3 +32,15 @@ def changeSave(file):
         open(file,'w')
         writesave(str(1),file)
 changeSave("sauvegarde.txt")
+
+
+import pandas as pd
+
+def getTuples(fichier_csv):
+    df = pd.read_csv(fichier_csv, header=None)  # header=None si le fichier n'a pas d'en-tête
+    donnees = df.iloc[:, 0].astype(float).tolist()  # Convertir en liste Python
+    return donnees
+
+donnees = getTuples("Classeur1.csv")
+
+print(donnees)
